@@ -9,6 +9,24 @@
     "id": 1
   },
   {
+    "title": "Yerba",
+    "description": "Playadito",
+    "price": 900,
+    "thumbnail": "http://playadito.png",
+    "code": "AE423",
+    "stock": 300,
+    "id": 2
+  },
+  {
+    "title": "Manteca",
+    "description": "La serenisima",
+    "price": 350,
+    "thumbnail": "http://serenisima2.png",
+    "code": "AE24423",
+    "stock": 200,
+    "id": 3
+  },
+  {
     "title": "Pan",
     "description": "Bimbo",
     "price": 220,
@@ -25,32 +43,5 @@
     "code": "AE4753",
     "stock": 140,
     "id": 5
-  },
-  {
-    "title": "Cafe",
-    "description": "Cafe tostado Juan Valdez",
-    "price": 2000,
-    "thumbnail": "http://cafe.png",
-    "code": "CA45CO",
-    "stock": 35,
-    "id": 1
-  },
-  {
-    "title": "Manteca",
-    "description": "La serenisima",
-    "price": 350,
-    "thumbnail": "http://serenisima2.png",
-    "code": "AE24423",
-    "stock": 200,
-    "id": 3
-  },
-  {
-    "title": "Manteca",
-    "description": "Lactear",
-    "price": 300,
-    "thumbnail": "http://ser.png",
-    "code": "AE2423",
-    "stock": 150,
-    "id": 3
   }
 ]
