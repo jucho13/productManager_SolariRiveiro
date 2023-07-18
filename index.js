@@ -17,7 +17,7 @@ let persistirProduct = async () => {
         let products = await productManager.productList();
         console.log(`Productos encontrados en Product Manager: ${products.length}`);
         console.log(products);
-        // let getProductsbyID=await productManager.getProductsbyID(5);
+        let getProductsbyID=await productManager.getProductsbyID(5);
         // await productManager.updateProduct('Manteca','Lactear',300,'http://ser.png','AE2423',150,3);
         // await productManager.deleteProduct(2);
       }

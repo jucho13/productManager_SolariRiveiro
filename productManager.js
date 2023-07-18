@@ -1,142 +1,3 @@
-// const fs = require('fs/promises');
-
-// class Product {
-//     constructor(title, description, price, thumbnail, code, stock, id) {
-//         this.title = title;
-//         this.description = description;
-//         this.price = price;
-//         this.thumbnail = thumbnail;
-//         this.code = code;
-//         this.stock = stock;
-//         this.id=id;
-//     }
-//     static id=0;
-// };
-
-    
-
-// class ProductManager {
-//     #products;
-//     #productDirPath;
-//     #productFilePath;
-//     #fileSystem;
-
-//     constructor() {
-//         this.#products = new Array();
-//         this.#productDirPath = "./files";
-//         this.#productFilePath = this.#productDirPath + "/Products.json";
-//         // this.#fileSystem = require("fs");
-//     }
-
-
-//     // METODOS con persistencia en archivo.json
-//     // Crear producto
-//     createProduct = async (title, description, price, thumbnail, code, stock, id) => {
-//         let sumador=0;
-//         for (let i=0; i < this.#products.length; i++)
-//         {
-//             if (this.#products[i].code === code){
-//                 console.log(`El codigo ${code} esta repetido`);
-//                 sumador++;
-//                 break;
-//             }      
-//         }
-//         if (sumador === 0 && id === 0){
-//             Product.id++;
-//             let newProduct = new Product(title, description, price, thumbnail, code, stock,id=Product.id);
-//             console.log("Crear Producto: producto a registrar:");
-//             console.log(newProduct);
-
-//             try {
-//                 await fs.mkdir(this.#productDirPath, { recursive: true });
-
-//                 if (!(await fs.existsSync(this.#productFilePath))) {
-//                     await fs.writeFile(this.#productFilePath, '[]');
-//                 }
-
-//                 let productsFile = await fs.readFile(this.#productFilePath, 'utf-8');
-//                 this.#products = JSON.parse(productsFile);
-//                 //Cargamos los productos encontrados para agregar el nuevo:
-//                 //Obtenemos el JSON String 
-//                 console.info("Archivo JSON obtenido desde archivo: ");
-//                 console.log(productsFile);
-//                 // this.#products = JSON.parse(productsFile);
-
-//                 console.log("Productos encontrados: ");
-//                 console.log(this.#products);
-//                 this.#products.push(newProduct);
-//                 console.log("Lista actualizada de productos: ");
-//                 console.log(this.#products);
-
-//                 //Se sobreescribe el archivos de productos para persistencia.
-//                 await fs.writeFile(this.#productFilePath, JSON.stringify(this.#products, null, 2, '\t'));
-//                 }
-//             catch (error) {
-//                 console.error(`Error creando producto nuevo: ${JSON.stringify(newProduct)}, detalle del error: ${error}`);
-//                 throw Error(`Error creando producto nuevo: ${JSON.stringify(newProduct)}, detalle del error: ${error}`);
-//             }
-//         }
-//         else if (sumador === 0 && id !== 0)
-//         {
-//             let newProduct = new Product(title, description, price, thumbnail, code, stock,id);
-//             console.log("Crear Producto: producto a registrar:");
-//             console.log(newProduct);
-
-//             try {
-//                 await fs.mkdir(this.#productDirPath, { recursive: true });
-
-//                 if (!(await fs.existsSync(this.#productFilePath))) {
-//                     await fs.writeFile(this.#productFilePath, '[]');
-//                 }
-
-//                 let productsFile = await fs.readFile(this.#productFilePath, 'utf-8');
-//                 this.#products = JSON.parse(productsFile);
-//                 //Cargamos los productos encontrados para agregar el nuevo:
-//                 //Obtenemos el JSON String 
-//                 console.info("Archivo JSON obtenido desde archivo: ");
-//                 console.log(productsFile);
-//                 // this.#products = JSON.parse(productsFile);
-
-//                 console.log("Productos encontrados: ");
-//                 console.log(this.#products);
-//                 this.#products.push(newProduct);
-//                 console.log("Lista actualizada de productos: ");
-//                 console.log(this.#products);
-
-//                 //Se sobreescribe el archivos de productos para persistencia.
-//                 await fs.writeFile(this.#productFilePath, JSON.stringify(this.#products, null, 2, '\t'));
-//             }
-//             catch (error) {
-//                 console.error(`Error creando producto nuevo: ${JSON.stringify(newProduct)}, detalle del error: ${error}`);
-//                 throw Error(`Error creando producto nuevo: ${JSON.stringify(newProduct)}, detalle del error: ${error}`);
-//             }
-//         }
-//     }
-//     // Leer productos 
-//     productList = async () => {
-//         try {
-//             //leemos el archivo
-//             let productsFile =await fs.readFile(this.#productFilePath, "utf-8");
-            
-//             //Obtenemos el JSON String 
-//             console.info("Archivo JSON obtenido desde archivo: ");
-//             console.log(productsFile);
-//             console.log("Productos encontrados en this.#products: ");
-//             console.log(this.#products);
-//             return this.#products;
-
-//         } catch (error) {
-//             console.error(`Error consultando los productos por archivo, valide el archivo: ${this.#productDirPath}, 
-//                 detalle del error: ${error}`);
-//             throw Error(`Error consultando los productos por archivo, valide el archivo: ${this.#productDirPath},
-//              detalle del error: ${error}`);
-//         }
-//     }
-
-
-// module.exports = ProductManager;
-
-//--------------------------------------------------------------------------------------
 const fs = require('fs/promises');
 
 class Product {
@@ -233,16 +94,41 @@ class ProductManager {
         }
         }
      };
-  
+    productList = async () => {
+        try {
+
+            //leemos el archivo
+            let productsFile = await fs.readFile(this.#productFilePath, "utf-8");
+
+
+            //Obtenemos el JSON String 
+            console.info("Archivo JSON obtenido desde archivo: ");
+            console.log(productsFile);
+            this.#products = JSON.parse(productsFile);
+            console.log("Productos encontrados: ");
+            console.log(this.#products);
+            return this.#products;
+
+        } catch (error) {
+            console.error(`Error consultando los productos por archivo, valide el archivo: ${this.#productDirPath}, 
+                detalle del error: ${error}`);
+            throw Error(`Error consultando los productos por archivo, valide el archivo: ${this.#productDirPath},
+             detalle del error: ${error}`);
+        }
+    }  
     //Leer productos por ID
     getProductsbyID = async (id) => {
         if(!this.#products.find((prod)=> prod.id === id)){
-            console.log("NOT FOUND");
+            const produ=this.#products.find((prod)=> prod.id === id);
+            console.log("Producto buscado por ID:NOT FOUND");
+            return (JSON.stringify(produ));
         }
         else
         {
+            const produ=this.#products.find((prod)=> prod.id === id);
             console.log("Objeto obtenido por ID = ");
             console.log(this.#products.find((prod)=> prod.id === id));
+            return (JSON.stringify(produ));
         }
     }
 

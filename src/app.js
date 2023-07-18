@@ -33,11 +33,13 @@ app.get('/products', async (req, res) => {
 
 app.get('/products/:pid', async (req, res) => {
 
-    let { pid } = req.params;
+    let {pid} = req.params;
     const id = parseInt(pid);
+    console.log(id);
 
     if (!isNaN(id) && id > 0) {
         let producto_by_id = await pManager.getProductsbyID(id);
+        console.log(` el produproduprodu :${producto_by_id}` );
         return res.send(
             JSON.stringify(producto_by_id)
         );
